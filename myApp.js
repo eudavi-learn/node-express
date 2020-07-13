@@ -10,6 +10,15 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/now", (req, res, next) => {
+  let currentTime = new Date().toString();
+  
+  req.time = currentTime;
+  next();
+}, (req, res) => {
+  res.json({ time: req.time });
+});
+
 app.get("/", (req, res) => {
   res.sendFile( __dirname + "/views/index.html");
 });
